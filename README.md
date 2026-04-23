@@ -83,7 +83,7 @@ Data includes:
 - Wind speed
 - Daily max/min temperatures
 
-### 5. 📊 Weekly Weather Table
+### 5. Weekly Weather Table
 - Displays next **7 days forecast**
 - Shows:
   - Day
@@ -96,7 +96,7 @@ weather.daily.time.slice(0, 7)
 ```
 ## Responsive Design
 
-Built using Tailwind responsive utilities:
+Built using Tailwind responsive utils:
 - **Desktop:**
   - Clock → Right
   - Weather → Left
