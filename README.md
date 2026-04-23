@@ -1,36 +1,128 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+Glass UI Analog Clock with Weather (Next.js + Tailwind)
 
-## Getting Started
+A modern, responsive web app featuring an **Apple-inspired liquid glass UI** with a real-time **analog clock** and **location-based weather system**.
 
-First, run the development server:
+URL: https://glass-ui-clock.vercel.app/
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Features
+
+- Real-time **Analog Clock**
+- **Automatic location detection** using browser GPS
+- Live **current weather + weekly forecast**
+- Current **date display**
+- **Glassmorphism (Liquid Glass UI)** design
+- Neon glowing background
+- Fully responsive (Desktop + Mobile)
+
+## Tech Stack
+
+This project is built using:
+
+- **Next.js (App Router)**
+- **React (useState, useEffect)**
+- **Tailwind CSS** 
+- **Open-Meteo API**
+- **OpenStreetMap (Nominatim API)**
+- **Browser Geolocation API**
+
+## UI Design (Glassmorphism / Liquid Glass)
+This project uses **Glassmorphism UI**, inspired by Apple’s modern design.
+
+### Key UI Elements:
+- `backdrop-blur-xl` → creates glass blur effect
+- `bg-white/10` → semi transparent layer
+- `border-white/20` → soft glass edges
+- `shadow-2xl` → depth and floating feel
+- Neon gradient background for glow
+
+## How It Works
+
+### 1. Clock System
+
+- Uses `setInterval` to update every second
+- Calculates rotation angles:
+
+```
+calculation- 
+Hour hand = hours × 30 + minutes × 0.5
+Minute hand = minutes × 6
+Second hand = seconds × 6
+```
+- Hands rotate using CSS transforms
+### 2. Location Detection
+
+The app automatically detects your location using:
+```js
+navigator.geolocation.getCurrentPosition()
+```
+This gives Latitude and Longitude
+
+### 3. Location Name
+
+Coordinates are converted into a readable place name using:
+
+```
+https://nominatim.openstreetmap.org/reverse
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Example:
+```
+23.81, 90.41 → Dhaka
+```
+Fallback system ensures it works for City, Town, Village and State
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+### 4. Weather Data
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Weather is fetched from:
 
-## Learn More
+```
+https://api.open-meteo.com
+```
+Data includes:
+- Current temperature
+- Wind speed
+- Daily max/min temperatures
 
-To learn more about Next.js, take a look at the following resources:
+### 5. 📊 Weekly Weather Table
+- Displays next **7 days forecast**
+- Shows:
+  - Day
+  - Max temparature
+  - Min temparature
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Rendered dynamically using:
+```js
+weather.daily.time.slice(0, 7)
+```
+## 📱 Responsive Design
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Built using Tailwind responsive utilities:
+- **Desktop:**
+  - Clock → Right
+  - Weather → Left
 
-## Deploy on Vercel
+- **Mobile:**
+  - Clock → Top
+  - Weather → Bottom
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Deployment (Vercel)
+
+1. Push project to GitHub
+2. Go to https://vercel.com
+3. Import repository
+4. Click Deploy
+
+## Important Notes
+
+- Location access must be **allowed in browser**
+- Works only on **HTTPS**
+- Weather loads after location permission is granted
+
+## ⭐ Final Thoughts
+
+This project combines:
+- Real-time systems (clock)
+- External APIs (weather + geolocation)
+- Modern glass UI design (glassmorphism)
+
