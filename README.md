@@ -1,120 +1,21 @@
-Glass UI Analog Clock with Weather (Next.js + Tailwind)
+This is a contemporary responsive web application which uses Next.js and Tailwind CSS frameworks and incorporates real time analog clock and live weather updates based on the user’s geographic location. The overall interface design is inspired by the Apple liquid glass UI theme and has an ethereal glow, blur effect, and neon glow effect, creating a futuristic interface appearance. Here you can check the application live: https://glass-ui-clock.vercel.app/
 
-A modern, responsive web app featuring an **Apple-inspired liquid glass UI** with a real-time **analog clock** and **location-based weather system**.
+The real-time analog clock of the app is fully functional and works using JavaScript’s setInterval function. In addition, the dynamic rotation of the clock hands is calculated using the following formulas:
 
-URL: https://glass-ui-clock.vercel.app/
+• Hours hand rotates depending on hours × 30 + minutes × 0.5;
+• Minute hand rotates at 6 degrees per minute;
+• Second hand rotates at 6 degrees per second.
 
-## Features
+These calculations are used in order to apply the required CSS transform function for rotating the hands.
 
-- Real-time **Analog Clock**
-- **Automatic location detection** using browser GPS
-- Live **current weather + weekly forecast**
-- Current **date display**
-- **Glassmorphism (Liquid Glass UI)** design
-- Neon glowing background
-- Fully responsive (Desktop + Mobile)
+To provide location-based features, the Geolocation API from the browser is used. Upon getting permission, it detects the latitude and longitude of the user and passes this information to the OpenStreetMap Nominatim reverse geocoding API, which provides the readable location in terms of city or town names. However, there is also a backup plan for places such as villages and regions.
 
-## Tech Stack
+The weather data is obtained from the Open-Meteo API without having an API key. Current temperature, wind speed, and daily temperature minima and maxima are provided by the application. Additionally, a 7-day weather forecast is rendered with the help of API response mapping using the table component.
 
-This project is built using:
+In terms of designing, the idea of ​​glassmorphism is implemented using a liquid glass UI. It consists of Tailwind utilities such as backdrop-blur-xl for blur, bg-white/10 for transparent backgrounds, border-white/20 for soft borders, and shadow-md for a floating effect. A neon gradient background makes the application look more modern.
 
-- **Next.js (App Router)**
-- **React (useState, useEffect)**
-- **Tailwind CSS** 
-- **Open-Meteo API**
-- **OpenStreetMap (Nominatim API)**
-- **Browser Geolocation API**
+The layout is responsive and adjusts seamlessly to any device used. In case of desktop computers, the clock and weather layouts appear in parallel format, but in the case of mobile phones, the two are placed one above the other in a vertical formation.
 
-## UI Design (Glassmorphism / Liquid Glass)
-This project uses **Glassmorphism UI**, inspired by Apple’s modern design.
+There are a couple of requirements that make sure the application works optimally. The first is that location services must be turned on in the browser since the application runs on HTTPS for security reasons related to geolocation. In addition, weather information is not loaded until location permissions are granted.
 
-### Key UI Elements:
-- `backdrop-blur-xl` → creates glass blur effect
-- `bg-white/10` → semi transparent layer
-- `border-white/20` → soft glass edges
-- `shadow-2xl` → depth and floating feel
-- Neon gradient background for glow
-
-## How It Works
-
-### 1. Clock System
-
-- Uses `setInterval` to update every second
-- Calculates rotation angles:
-
-```
-calculation- 
-Hour hand = hours × 30 + minutes × 0.5
-Minute hand = minutes × 6
-Second hand = seconds × 6
-```
-- Hands rotate using CSS transforms
-### 2. Location Detection
-
-The app automatically detects your location using:
-```js
-navigator.geolocation.getCurrentPosition()
-```
-This gives Latitude and Longitude
-
-### 3. Location Name
-
-Coordinates are converted into a readable place name using:
-
-```
-https://nominatim.openstreetmap.org/reverse
-```
-
-Example:
-```
-23.81, 90.41 → Dhaka
-```
-Fallback system ensures it works for City, Town, Village and State
-
-### 4. Weather Data
-
-Weather is fetched from:
-
-```
-https://api.open-meteo.com
-```
-Data includes:
-- Current temperature
-- Wind speed
-- Daily max/min temperatures
-
-### 5. Weekly Weather Table
-- Displays next **7 days forecast**
-- Shows:
-  - Day
-  - Max temparature
-  - Min temparature
-
-Rendered dynamically using:
-```js
-weather.daily.time.slice(0, 7)
-```
-## Responsive Design
-
-Built using Tailwind responsive utils:
-- **Desktop:**
-  - Clock → Right
-  - Weather → Left
-
-- **Mobile:**
-  - Clock → Top
-  - Weather → Bottom
-
-## Important Notes
-
-- Location access must be **allowed in browser**
-- Works only on **HTTPS**
-- Weather loads after location permission is granted
-
-## Final Thoughts
-
-This project combines:
-- Real time systems
-- External APIs (weather + geolocation)
-- Modern glass UI design (glassmorphism)
-
+In summary, this project combines concepts from real-time systems, API connections, and user interface design to generate a visually engaging product.
