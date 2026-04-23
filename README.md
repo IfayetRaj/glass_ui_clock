@@ -94,7 +94,7 @@ Rendered dynamically using:
 ```js
 weather.daily.time.slice(0, 7)
 ```
-## 📱 Responsive Design
+## Responsive Design
 
 Built using Tailwind responsive utilities:
 - **Desktop:**
@@ -105,24 +105,16 @@ Built using Tailwind responsive utilities:
   - Clock → Top
   - Weather → Bottom
 
-
-## Deployment (Vercel)
-
-1. Push project to GitHub
-2. Go to https://vercel.com
-3. Import repository
-4. Click Deploy
-
 ## Important Notes
 
 - Location access must be **allowed in browser**
 - Works only on **HTTPS**
 - Weather loads after location permission is granted
 
-## ⭐ Final Thoughts
+## Final Thoughts
 
 This project combines:
-- Real-time systems (clock)
+- Real time systems
 - External APIs (weather + geolocation)
 - Modern glass UI design (glassmorphism)
 
