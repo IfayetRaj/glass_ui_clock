@@ -54,7 +54,7 @@ export default function Home() {
 
        {/* left: Analog Clock */}
        <div className="flex-1 shadow-2xl shadow-black/60 rounded-3xl flex items-center justify-center">
-          <div className="relative w-76 h-76 md:w-82 md:h-82 shadow-2xl shadow-black rounded-full border border-white/20 backdrop-blur-lg bg-white/10 flex items-center justify-center">
+          <div className="relative w-62 h-62 md:w-82 md:h-82 shadow-2xl shadow-black rounded-full border border-white/20 backdrop-blur-lg bg-white/10 flex items-center justify-center">
 
             {/* Hour hand */}
             <div
